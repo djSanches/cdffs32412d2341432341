@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Блокпост — Система беспрепятственного доступа</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --primary-color: #3b82f6;
+            --primary-hover: #2563eb;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent: #10b981;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            padding: 24px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--primary-color);
+            border-radius: 8px;
+            display: inline-block;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--primary-color);
+            color: #fff;
+            padding: 10px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+
+        .btn:hover {
+            background: var(--primary-hover);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 100px 0 80px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 24px;
+            line-height: 1.2;
+            background: linear-gradient(to right, #60a5fa, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+
+        /* Features Section */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 100px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 40px 30px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .card-icon {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 16px;
+        }
+
+        /* Premium Services */
+        .premium {
+            background: rgba(30, 41, 59, 0.5);
+            border-radius: 24px;
+            padding: 60px;
+            margin-bottom: 100px;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        .premium-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .premium-header h2 {
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .service-item {
+            display: flex;
+            gap: 20px;
+        }
+
+        .service-icon {
+            flex-shrink: 0;
+            width: 48px;
+            height: 48px;
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--primary-color);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .service-info h4 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: var(--text-main);
+        }
+
+        .service-info p {
+            color: var(--text-muted);
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 40px 0;
+            text-align: center;
+            color: var(--text-muted);
+        }
+
+        /* Адаптивность для мобильных устройств (смартфоны) */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 36px; }
+            .hero p { font-size: 18px; }
+            .premium { padding: 40px 20px; }
+            
+            /* Правки для мобильного отображения дополнительных услуг */
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .service-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <a href="#" class="logo">
+                <span class="logo-icon"></span>
+                Блокпост
+            </a>
+            <a href="https://cabinet.blockpost.site" class="btn">Личный кабинет</a>
+        </header>
+
+        <main>
+            <section class="hero">
+                <h1>Границ больше не существует</h1>
+                <p><strong>Блокпост</strong> — это надежная система беспрепятственного доступа к любым заблокированным ресурсам. Работайте с <b>ChatGPT, Grok, Gemini</b> и другими мировыми нейросетями и сервисами без ограничений.</p>
+                <a href="https://cabinet.blockpost.site" class="btn" style="font-size: 18px; padding: 14px 32px;">Начать работу</a>
+            </section>
+
+            <section class="features">
+                <div class="card">
+                    <div class="card-icon">🚀</div>
+                    <h3>Эталонная скорость</h3>
+                    <p>Наши каналы оптимизированы для максимальной пропускной способности. Смотрите видео в 4K и работайте с тяжелыми запросами без задержек и обрывов соединения.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🛡️</div>
+                    <h3>Абсолютная приватность</h3>
+                    <p>Мы исповедуем строгую политику нулевого логирования. Никакого сбора данных, никаких утечек. Ваша цифровая жизнь остается исключительно вашей.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">💎</div>
+                    <h3>Приватные серверы</h3>
+                    <p>Мы не продаем доступ в "общий котел". Наши серверы не перегружены тысячами пользователей, что гарантирует вам стабильность и премиальное качество связи 24/7.</p>
+                </div>
+            </section>
+
+            <section class="premium">
+                <div class="premium-header">
+                    <h2>Продвинутые решения для ваших задач</h2>
+                    <p style="color: var(--text-muted);">Больше, чем просто доступ. Настройте интернет под свои нужды.</p>
+                </div>
+                
+                <div class="services-grid">
+                    <div class="service-item">
+                        <div class="service-icon">🧠</div>
+                        <div class="service-info">
+                            <h4>Умный роутер</h4>
+                            <p>Настройте один раз и забудьте о переключателях. Наша интеллектуальная маршрутизация пускает через "Блокпост" только заблокированные сайты, оставляя доступ к локальным сервисам (например, банкам или Госуслугам) прямым и быстрым.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="service-item">
+                        <div class="service-icon">👑</div>
+                        <div class="service-info">
+                            <h4>VIP-сервер под ключ</h4>
+                            <p>Выделенный сервер со статическим IP-адресом только для вас. Идеальное решение для систем с жесткими фильтрами безопасности (например, для работы с <b>Claude</b> или доступа к закрытой корпоративной инфраструктуре).</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 Блокпост. Все права защищены. Система беспрепятственного доступа нового поколения.</p>
+        </footer>
+    </div>
+
+</body>
+</html>

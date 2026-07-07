@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Поддержка — Блокпост</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --primary-color: #3b82f6;
+            --primary-hover: #2563eb;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            
+            /* Цвета брендов */
+            --tg-color: #2aabee;
+            --vk-color: #0077ff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Чтобы подвал всегда был внизу */
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            flex: 1; /* Растягиваем контентную часть */
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header */
+        header {
+            padding: 24px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--primary-color);
+            border-radius: 8px;
+            display: inline-block;
+        }
+
+        .btn-outline {
+            display: inline-block;
+            background: transparent;
+            color: var(--text-main);
+            padding: 10px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--primary-color);
+            background: rgba(59, 130, 246, 0.1);
+        }
+
+        /* Support Hero Section */
+        .support-hero {
+            padding: 80px 0 40px;
+            text-align: center;
+        }
+
+        .support-hero h1 {
+            font-size: 42px;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            color: var(--text-main);
+        }
+
+        .support-hero p {
+            font-size: 18px;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Contact Cards */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 800px;
+            margin: 0 auto 80px;
+            width: 100%;
+        }
+
+        .contact-card {
+            background: var(--card-bg);
+            padding: 40px 30px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            text-decoration: none;
+            color: var(--text-main);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .contact-card.tg:hover {
+            border-color: var(--tg-color);
+        }
+
+        .contact-card.vk:hover {
+            border-color: var(--vk-color);
+        }
+
+        .icon-wrapper {
+            width: 72px;
+            height: 72px;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+        }
+
+        .tg .icon-wrapper {
+            background: rgba(42, 171, 238, 0.1);
+        }
+
+        .vk .icon-wrapper {
+            background: rgba(0, 119, 255, 0.1);
+        }
+
+        .contact-card h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .contact-card p {
+            color: var(--text-muted);
+            font-size: 15px;
+            margin-bottom: 20px;
+        }
+
+        .contact-link-text {
+            margin-top: auto;
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .tg .contact-link-text { color: var(--tg-color); }
+        .vk .contact-link-text { color: var(--vk-color); }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 40px 0;
+            text-align: center;
+            color: var(--text-muted);
+            margin-top: auto;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .support-hero h1 { font-size: 32px; }
+            .support-hero p { font-size: 16px; }
+            .contact-grid { gap: 20px; }
+            .contact-card { padding: 30px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Шапка -->
+        <header>
+            <a href="index.html" class="logo">
+                <span class="logo-icon"></span>
+                Блокпост
+            </a>
+            <a href="index.html" class="btn-outline">На главную</a>
+        </header>
+
+        <!-- Главная часть -->
+        <main>
+            <section class="support-hero">
+                <h1>Служба поддержки</h1>
+                <p>Возникли вопросы, нужна помощь с настройкой умного роутера или хотите заказать VIP-сервер? Наша команда всегда на связи.</p>
+            </section>
+
+            <!-- Карточки контактов -->
+            <section class="contact-grid">
+                
+                <!-- Telegram -->
+                <a href="https://t.me/blockpostsupport" target="_blank" rel="noopener noreferrer" class="contact-card tg">
+                    <div class="icon-wrapper">
+                        <!-- Векторная иконка Telegram -->
+                        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M21.5434 2.89988C21.7228 2.76633 21.9482 2.70923 22.1726 2.74041C22.397 2.77158 22.6033 2.8885 22.7492 3.06733C22.8951 3.24616 22.9698 3.47352 22.958 3.70274C22.9463 3.93196 22.849 4.14578 22.6864 4.30088L10.0214 16.2739C9.84511 16.4404 9.75471 16.6749 9.77138 16.9159L10.1554 21.0809C10.177 21.3149 10.0967 21.5451 9.93605 21.7058C9.77539 21.8665 9.55169 21.9407 9.32838 21.9099C9.10507 21.8791 8.9066 21.747 8.78838 21.5499L6.50538 17.8429C6.38883 17.653 6.21637 17.5028 6.01238 17.4139L2.17938 15.7599C1.94783 15.6596 1.75825 15.4746 1.64455 15.245C1.53086 15.0155 1.50156 14.7571 1.56238 14.5169C1.61105 14.2863 1.74312 14.085 1.93638 13.9539L21.5434 2.89988Z" fill="#2aabee"/>
+                            <path d="M10.0215 16.274L13.7915 20.306C13.9377 20.4619 14.1437 20.5501 14.3605 20.55C14.5615 20.548 14.7533 20.4674 14.8945 20.324L18.7305 16.518C18.8953 16.3547 18.9839 16.1287 18.9745 15.897C18.965 15.6654 18.8584 15.446 18.6795 15.297L10.0215 16.274Z" fill="#2aabee"/>
+                        </svg>
+                    </div>
+                    <h3>Telegram</h3>
+                    <p>Самый быстрый способ получить ответ. Наша поддержка в Telegram работает ежедневно.</p>
+                    <span class="contact-link-text">@blockpostsupport</span>
+                </a>
+
+                <!-- VK -->
+                <a href="https://vk.com/blockpostobhod" target="_blank" rel="noopener noreferrer" class="contact-card vk">
+                    <div class="icon-wrapper">
+                        <!-- Векторная иконка VK -->
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M13.161 17.439C7.452 17.439 4.225 13.524 4.092 7.42301H7.234C7.319 11.666 9.387 13.433 10.835 13.794V7.42301H13.82V11.054C15.244 10.897 16.942 9.17701 17.514 7.42301H20.5C20.043 9.49301 18.414 11.211 17.204 12.417C18.414 13.477 20.272 15.018 21.053 17.439H17.803C17.188 15.73 15.73 14.358 13.82 14.165V17.439H13.161Z" fill="#0077ff"/>
+                        </svg>
+                    </div>
+                    <h3>ВКонтакте</h3>
+                    <p>Официальная группа с новостями, обсуждениями и ответами на частые вопросы.</p>
+                    <span class="contact-link-text">blockpostobhod</span>
+                </a>
+
+            </section>
+        </main>
+
+        <!-- Подвал -->
+        <footer>
+            <p>&copy; 2026 Блокпост. Все права защищены. Служба технической поддержки.</p>
+        </footer>
+    </div>
+
+</body>
+</html>

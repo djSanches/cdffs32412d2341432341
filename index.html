@@ -77,6 +77,10 @@
             background: var(--primary-hover);
         }
 
+        .btn[style*="transparent"]:hover {
+            background: rgba(255, 255, 255, 0.08) !important;
+        }
+
         /* Hero Section */
         .hero {
             padding: 100px 0 80px;
@@ -201,6 +205,20 @@
             .hero h1 { font-size: 36px; }
             .hero p { font-size: 18px; }
             .premium { padding: 40px 20px; }
+
+            header {
+                flex-wrap: wrap;
+                gap: 16px;
+            }
+
+            header > div {
+                gap: 10px !important;
+            }
+
+            header .btn {
+                padding: 8px 16px;
+                font-size: 14px;
+            }
             
             /* Правки для мобильного отображения дополнительных услуг */
             .services-grid {
@@ -224,7 +242,10 @@
                 <span class="logo-icon"></span>
                 Блокпост
             </a>
-            <a href="https://cabinet.blockpost.site" class="btn">Личный кабинет</a>
+            <div style="display: flex; align-items: center; gap: 16px;">
+                <a href="https://blockpost.site/instructions/" class="btn" style="background: transparent; border: 1px solid rgba(255, 255, 255, 0.15); color: var(--text-main);">Инструкции</a>
+                <a href="https://cabinet.blockpost.site" class="btn">Личный кабинет</a>
+            </div>
         </header>
 
         <main>

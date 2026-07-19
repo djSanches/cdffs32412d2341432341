@@ -103,6 +103,24 @@
             margin: 0 auto 40px;
         }
 
+        .arrow-point {
+            animation: arrow-nudge 1.4s ease-in-out infinite;
+        }
+
+        @keyframes arrow-nudge {
+            0%, 100% { transform: translateX(0); opacity: 0.85; }
+            50% { transform: translateX(6px); opacity: 1; }
+        }
+
+        .arrow-point[style*="rotate(180deg)"] {
+            animation-name: arrow-nudge-left;
+        }
+
+        @keyframes arrow-nudge-left {
+            0%, 100% { transform: rotate(180deg) translateX(0); opacity: 0.85; }
+            50% { transform: rotate(180deg) translateX(6px); opacity: 1; }
+        }
+
         /* Features Section */
         .features {
             display: grid;
@@ -300,6 +318,11 @@
                 align-items: flex-start;
                 gap: 12px;
             }
+
+            .arrow-point {
+                width: 26px;
+                height: 20px;
+            }
         }
     </style>
 </head>
@@ -337,12 +360,18 @@
             <section class="hero">
                 <h1>Границ больше не существует</h1>
                 <p><strong>Блокпост</strong> — это надежная система беспрепятственного доступа к любым заблокированным ресурсам. Работайте с <b>ChatGPT, Grok, Gemini</b> и другими мировыми нейросетями и сервисами без ограничений.</p>
-                <a href="https://cabinet.blockpost.site" class="btn" style="font-size: 18px; padding: 14px 32px;">Начать работу</a>
-                <div style="margin-top: 20px;">
-                    <button onclick="openVideoModal()" style="background: none; border: none; cursor: pointer; color: var(--accent); text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; font-size: 16px; font-family: inherit;">
-                        <span>▶</span> Посмотреть видеоинструкцию по настройке
+                <div style="margin-bottom: 24px; display: flex; align-items: center; justify-content: center; gap: 4px;">
+                    <svg class="arrow-point" width="46" height="30" viewBox="0 0 46 30">
+                        <path d="M2 15 H38 M38 15 L26 4 M38 15 L26 26" stroke="#ef4444" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                    </svg>
+                    <button onclick="openVideoModal()" style="background: rgba(16, 185, 129, 0.08); border: 2px solid var(--accent); color: var(--accent); padding: 14px 32px; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 17px; font-family: inherit; display: inline-flex; align-items: center; gap: 10px; transition: background 0.3s ease;" onmouseover="this.style.background='rgba(16,185,129,0.18)'" onmouseout="this.style.background='rgba(16,185,129,0.08)'">
+                        <span>▶</span> Видеоинструкция
                     </button>
+                    <svg class="arrow-point" width="46" height="30" viewBox="0 0 46 30" style="transform: rotate(180deg);">
+                        <path d="M2 15 H38 M38 15 L26 4 M38 15 L26 26" stroke="#ef4444" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                    </svg>
                 </div>
+                <a href="https://cabinet.blockpost.site" class="btn" style="font-size: 18px; padding: 14px 32px;">Начать работу</a>
             </section>
 
             <section class="features">

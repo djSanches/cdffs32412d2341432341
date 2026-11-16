@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Настройка роутера — Блокпост</title>
+    <style>
+        /* Базовые цветовые токены и переменные в стиле Блокпост */
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --primary-color: #3b82f6;
+            --primary-hover: #2563eb;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent: #10b981;
+            --accent-hover: #059669;
+        }
+
+        /* Сброс стандартных отступов и настройка типографики */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Шапка сайта (Header) */
+        header {
+            padding: 24px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--primary-color);
+            border-radius: 8px;
+            display: inline-block;
+            flex-shrink: 0;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .tg-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            line-height: 0;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+
+        .tg-link:hover {
+            transform: scale(1.06);
+            opacity: 0.9;
+        }
+
+        /* Универсальные кнопки */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: var(--primary-color);
+            color: #fff;
+            padding: 10px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        .btn:hover {
+            background: var(--primary-hover);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: var(--text-main);
+        }
+
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .btn-accent {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        .btn-accent:hover {
+            background: var(--accent-hover);
+        }
+
+        /* Hero-секция */
+        .hero {
+            padding: 80px 0 60px;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(59, 130, 246, 0.12);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            color: #60a5fa;
+            padding: 6px 16px;
+            border-radius: 999px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            background: linear-gradient(to right, #60a5fa, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: var(--text-muted);
+            max-width: 680px;
+            margin: 0 auto;
+        }
+
+        /* Сетка пошаговой инструкции */
+        .steps-section {
+            margin-bottom: 60px;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 28px;
+        }
+
+        /* Карточка отдельного шага в стиле .card */
+        .step-card {
+            background: var(--card-bg);
+            padding: 36px 30px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .step-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border-color: rgba(59, 130, 246, 0.35);
+        }
+
+        .step-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 22px;
+        }
+
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(59, 130, 246, 0.14);
+            color: #60a5fa;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            font-weight: 700;
+            font-size: 14px;
+            padding: 6px 14px;
+            border-radius: 10px;
+            letter-spacing: 0.3px;
+        }
+
+        .step-icon {
+            font-size: 30px;
+            line-height: 1;
+        }
+
+        .step-card h3 {
+            font-size: 22px;
+            margin-bottom: 12px;
+            color: var(--text-main);
+        }
+
+        .step-card p {
+            color: var(--text-muted);
+            font-size: 16px;
+            margin-bottom: 24px;
+        }
+
+        .step-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        .step-action {
+            margin-top: auto;
+            padding-top: 8px;
+        }
+
+        .step-action .btn {
+            width: 100%;
+            padding: 12px 20px;
+        }
+
+        .tariff-pill {
+            display: inline-block;
+            background: rgba(59, 130, 246, 0.15);
+            color: #93c5fd;
+            border: 1px solid rgba(59, 130, 246, 0.35);
+            padding: 2px 10px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 15px;
+        }
+
+        /* Финальный акцентный блок в стиле .premium */
+        .final-step {
+            background: linear-gradient(145deg, rgba(30, 41, 59, 0.85), rgba(16, 185, 129, 0.08));
+            border-radius: 24px;
+            padding: 56px 48px;
+            margin-bottom: 90px;
+            border: 1px solid rgba(16, 185, 129, 0.35);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 36px;
+        }
+
+        .final-content {
+            max-width: 720px;
+        }
+
+        .final-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--accent);
+            border: 1px solid rgba(16, 185, 129, 0.35);
+            padding: 6px 14px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 14px;
+            margin-bottom: 18px;
+        }
+
+        .final-step h2 {
+            font-size: 34px;
+            line-height: 1.25;
+            margin-bottom: 14px;
+            color: var(--text-main);
+        }
+
+        .final-step p {
+            font-size: 18px;
+            color: var(--text-muted);
+        }
+
+        .final-visual {
+            flex-shrink: 0;
+            width: 96px;
+            height: 96px;
+            border-radius: 24px;
+            background: rgba(16, 185, 129, 0.14);
+            border: 1px solid rgba(16, 185, 129, 0.35);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 46px;
+            box-shadow: 0 0 30px rgba(16, 185, 129, 0.2);
+        }
+
+        /* Футер (Footer) */
+        footer {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 40px 0;
+            text-align: center;
+            color: var(--text-muted);
+        }
+
+        /* Адаптивность для мобильных устройств */
+        @media (max-width: 768px) {
+            header {
+                flex-wrap: wrap;
+                gap: 16px;
+            }
+
+            .header-actions {
+                gap: 10px;
+            }
+
+            header .btn {
+                padding: 8px 14px;
+                font-size: 14px;
+            }
+
+            .hero {
+                padding: 56px 0 44px;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .hero p {
+                font-size: 17px;
+            }
+
+            .steps-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .step-card {
+                padding: 28px 22px;
+            }
+
+            .final-step {
+                flex-direction: column-reverse;
+                align-items: flex-start;
+                padding: 36px 24px;
+                margin-bottom: 64px;
+                gap: 24px;
+            }
+
+            .final-step h2 {
+                font-size: 26px;
+            }
+
+            .final-step p {
+                font-size: 16px;
+            }
+
+            .final-visual {
+                width: 72px;
+                height: 72px;
+                font-size: 36px;
+                border-radius: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Шапка сайта -->
+        <header>
+            <a href="https://blockpost.site" class="logo">
+                <span class="logo-icon"></span>
+                Блокпост
+            </a>
+
+            <div class="header-actions">
+                <!-- Иконка Telegram -->
+                <a href="https://t.me/blockpostobhod" target="_blank" rel="noopener" aria-label="Telegram" class="tg-link">
+                    <svg width="36" height="36" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="tg-grad" x1="0.667" y1="0.164" x2="0.417" y2="0.75">
+                                <stop offset="0" stop-color="#37aee2"/>
+                                <stop offset="1" stop-color="#1e96c8"/>
+                            </linearGradient>
+                        </defs>
+                        <circle cx="120" cy="120" r="120" fill="url(#tg-grad)"/>
+                        <path fill="#c8daea" d="M98,175c-3.888,0-3.227-1.468-4.568-5.17L82,132.207 175,74"/>
+                        <path fill="#a9c9dd" d="M98,175c3,0,4.325-1.372,6-3l16-15.558-19.958-12.035"/>
+                        <path fill="#fff" d="M100.04,144.41l48.36,35.729c5.519,3.045,9.501,1.468,10.877,-5.123l19.664,-92.626c2.016,-8.07,-3.08,-11.719,-8.364,-9.317l-115.59,44.571c-7.89,3.165,-7.843,7.567,-1.438,9.523l29.663,9.259l68.673,-43.325c3.242,-1.966,6.218,-0.91,3.776,1.258"/>
+                    </svg>
+                </a>
+
+                <a href="https://blockpost.site" class="btn btn-outline">На главную</a>
+                <a href="https://cabinet.blockpost.site" target="_blank" rel="noopener" class="btn">Личный кабинет</a>
+            </div>
+        </header>
+
+        <main>
+            <!-- Приветственный блок -->
+            <section class="hero">
+                <div class="hero-badge">📡 Пошаговое руководство</div>
+                <h1>Настройка умного роутера</h1>
+                <p>Подключите ваш роутер к системе <strong>Блокпост</strong> всего за 5 простых шагов. Никакой сложной ручной настройки — всё работает автоматически.</p>
+            </section>
+
+            <!-- Карточки шагов 1–5 -->
+            <section class="steps-section" aria-label="Пошаговая инструкция">
+                <div class="steps-grid">
+                    <!-- Шаг 1 -->
+                    <article class="step-card">
+                        <div>
+                            <div class="step-top">
+                                <span class="step-number">Шаг 1</span>
+                                <span class="step-icon" aria-hidden="true">🌐</span>
+                            </div>
+                            <h3>Зайдите на сайт</h3>
+                            <p>Перейдите в личный кабинет сервиса <strong>Блокпост</strong> по адресу <b>cabinet.blockpost.site</b> с телефона или компьютера.</p>
+                        </div>
+                        <div class="step-action">
+                            <a href="https://cabinet.blockpost.site" target="_blank" rel="noopener" class="btn">
+                                Перейти на cabinet.blockpost.site ↗
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- Шаг 2 -->
+                    <article class="step-card">
+                        <div>
+                            <div class="step-top">
+                                <span class="step-number">Шаг 2</span>
+                                <span class="step-icon" aria-hidden="true">👤</span>
+                            </div>
+                            <h3>Зарегистрируйтесь</h3>
+                            <p>Создайте свой аккаунт в личном кабинете, чтобы управлять подпиской и привязать к нему ваше устройство.</p>
+                        </div>
+                    </article>
+
+                    <!-- Шаг 3 -->
+                    <article class="step-card">
+                        <div>
+                            <div class="step-top">
+                                <span class="step-number">Шаг 3</span>
+                                <span class="step-icon" aria-hidden="true">📦</span>
+                            </div>
+                            <h3>Выберите тариф «Роутеры»</h3>
+                            <p>В списке доступных тарифов в личном кабинете выберите специальный тариф <span class="tariff-pill">Роутеры</span>.</p>
+                        </div>
+                    </article>
+
+                    <!-- Шаг 4 -->
+                    <article class="step-card">
+                        <div>
+                            <div class="step-top">
+                                <span class="step-number">Шаг 4</span>
+                                <span class="step-icon" aria-hidden="true">💳</span>
+                            </div>
+                            <h3>Оплатите тариф</h3>
+                            <p>Подтвердите выбранный тариф и проведите оплату любым удобным способом в личном кабинете.</p>
+                        </div>
+                    </article>
+
+                    <!-- Шаг 5 -->
+                    <article class="step-card">
+                        <div>
+                            <div class="step-top">
+                                <span class="step-number">Шаг 5</span>
+                                <span class="step-icon" aria-hidden="true">💬</span>
+                            </div>
+                            <h3>Свяжитесь с поддержкой</h3>
+                            <p>Напишите в нашу службу поддержки и попросите, чтобы ваш роутер связали с вашим аккаунтом.</p>
+                        </div>
+                        <div class="step-action">
+                            <a href="https://blockpost.site/support/" target="_blank" rel="noopener" class="btn btn-accent">
+                                Написать в поддержку ↗
+                            </a>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <!-- Финальный шаг -->
+            <section class="final-step" aria-label="Завершение настройки">
+                <div class="final-content">
+                    <div class="final-badge">✓ Готово к работе</div>
+                    <h2>Включите роутер в розетку и наслаждайтесь</h2>
+                    <p>После того как поддержка привяжет устройство к вашему аккаунту, просто подключите роутер к питанию — все параметры подтянутся автоматически, и свободный интернет сразу заработает.</p>
+                </div>
+                <div class="final-visual" aria-hidden="true">🔌</div>
+            </section>
+        </main>
+
+        <!-- Подвал сайта -->
+        <footer>
+            <p>&copy; 2026 Блокпост. Все права защищены. Система беспрепятственного доступа нового поколения.</p>
+        </footer>
+    </div>
+
+</body>
+</html>
